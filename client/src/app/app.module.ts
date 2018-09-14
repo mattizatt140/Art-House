@@ -9,6 +9,7 @@ import { LoginComponent } from './components//login/login.component';
 import { RegisterComponent } from './components//register/register.component';
 import { FeedComponent } from './components/feed/feed.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { AuthenticateService } from './services/authenticate.service';
 
 const appRoutes: Routes = [
   {
@@ -47,7 +48,7 @@ const appRoutes: Routes = [
       appRoutes
     )
   ],
-  providers: [],
+  providers: [AuthenticateService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

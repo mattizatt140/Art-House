@@ -6,9 +6,20 @@ import { HttpClient } from '@angular/common/http';
 })
 export class AuthenticateService {
 
-  constructor(private http: HttpClient) { }
+  domain: string;
+  constructor(private http: HttpClient) {
+    this.domain = 'http://localhost:8000';
+  }
+
+  registerUser(user) {
+    return this.http.post(`${this.domain}/authenticate/register`, user);
+  }
+
+  loginUser(user) {
+    return this.http.post(`${this.domain}/authenticate/login`, user);
+  }
 
   isLoggedIn() {
-    return this.http.post('/api/isLoggedIn', {});
+    return this.http.post(`${this.domain}/api/isLoggedIn`, {});
   }
 }

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AuthenticateService } from '../../services/authenticate.service';
 
 @Component({
   selector: 'app-login',
@@ -15,8 +15,8 @@ export class LoginComponent {
   form: FormGroup;
 
   constructor(
+    private auth: AuthenticateService,
     private router: Router,
-    private http: HttpClient,
     private formBuilder: FormBuilder
   ) {
     this.title = 'Login';
@@ -27,14 +27,14 @@ export class LoginComponent {
     this.form = this.formBuilder.group({
       username: ['', Validators.compose([
         Validators.required,
-        Validators.minLength(5),
-        Validators.maxLength(30),
+        Validators.minLength(3),
+        Validators.maxLength(18),
         this.validateUsername
       ])],
       password: ['', Validators.compose([
         Validators.required,
-        Validators.minLength(5),
-        Validators.maxLength(30),
+        Validators.minLength(7),
+        Validators.maxLength(35),
         this.validatePassword
       ])]
     });
@@ -50,7 +50,7 @@ export class LoginComponent {
   }
 
   validatePassword(controls) {
-    const regExp = new RegExp(/^(?=.*?[a-z])(?=.*?[A-Z])(?=.*?[\d])(?=.*?[\W]).{8,35}$/);
+    const regExp = new RegExp(/^(?=.*?[a-z])(?=.*?[A-Z])(?=.*?[\d])(?=.*?[\W]).{7,35}$/);
     if (regExp.test(controls.value)) {
       return null;
     } else {
@@ -63,7 +63,7 @@ export class LoginComponent {
   }
 
   handleSubmit() {
-    this.http.post('/login', {
+    this.auth.loginUser({
       username: this.form.controls.username.value,
       password: this.form.controls.password.value
     }).subscribe((res: any) => {
@@ -71,6 +71,8 @@ export class LoginComponent {
         this.router.navigate([res.redirect]);
       } else {
         this.msg = res.msg;
+        this.form.controls.username.setValue('');
+        this.form.controls.password.setValue('');
       }
     });
   }
