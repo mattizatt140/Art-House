@@ -1,0 +1,23 @@
+h1 {
+  font-family: 'Arial';
+  font-weight: bold;
+  font-size: 3em;
+  margin-bottom: 20px;
+}
+
+.bg {
+  /* The image used */
+  background-image: url("../../images/home-page.jpg");
+
+  /* Full height */
+  height: 100%;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.btn {
+  margin: 0;
+}
