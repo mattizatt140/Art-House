@@ -2,12 +2,13 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
-import { HomeComponent } from './home/home.component';
-import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './register/register.component';
-import { AccountComponent } from './account/account.component';
+import { HomeComponent } from './components/home/home.component';
+import { LoginComponent } from './components//login/login.component';
+import { RegisterComponent } from './components//register/register.component';
+import { FeedComponent } from './components/feed/feed.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 const appRoutes: Routes = [
   {
@@ -23,8 +24,8 @@ const appRoutes: Routes = [
     component: RegisterComponent
   },
   {
-    path: 'account',
-    component: AccountComponent
+    path: 'feed',
+    component: FeedComponent
   }
 ];
 
@@ -34,12 +35,14 @@ const appRoutes: Routes = [
     HomeComponent,
     LoginComponent,
     RegisterComponent,
-    AccountComponent
+    FeedComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
     RouterModule.forRoot(
       appRoutes
     )

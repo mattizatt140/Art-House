@@ -1,0 +1,30 @@
+<div class="bg">
+  <div class="container">
+    <button type="button" class="btn btn-primary btn-lg" id="route" (click)="handleRoute()">Login</button>
+  </div>
+  <div class="container" style="width: 70%; padding-top: 12%;">
+    <div class="text-center">
+      <h1 class="text-light">{{title}}</h1>
+      <h4 *ngIf="msg" class="alert alert-danger"><strong>{{msg}}</strong></h4>
+    </div>
+    <div class="container" style="width: 50%;">
+      <form [formGroup]="form" (submit)="handleSubmit()">
+        <div class="form-group">
+          <input type="text" class="form-control form-control-lg"
+                 name="email" placeholder="Email" formControlName="email">
+        </div>
+        <div class="form-group">
+          <input type="text" class="form-control form-control-lg"
+                 name="username" placeholder="Username" formControlName="username">
+        </div>
+        <div class="form-group">
+          <input type="password" class="form-control form-control-lg"
+                 name="password" placeholder="Password" formControlName="password">
+        </div>
+        <div class="form-group">
+          <input [disabled]="!form.valid" type="submit" class="btn btn-primary btn-block btn-lg" value="Register"/>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -36,6 +36,11 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
 
-require('./routes/index')(app, passport);
+app.get('/*', (req, res, next) => {
+    res.render('index');
+});
+
+require('./routes/authentication')(app, passport);
+require('./routes/api')(app);
 
 module.exports = app;

@@ -21,10 +21,11 @@ module.exports = function(passport) {
                 if (err) {
                     return done(err);
                 } else if (user) {
-                    return done(null, false, 'Oops! That username is taken');
+                    return done(null, false, 'That username is taken');
                 } else {
                     var newUser = new User();
 
+                    newUser.username = req.body.email
                     newUser.username = username;
                     newUser.password = newUser.generateHash(password);
 
@@ -47,9 +48,9 @@ module.exports = function(passport) {
             if (err) {
                 return done(err);
             } else if (!user) {
-                return done(null, false, 'Oops! Invalid username');
+                return done(null, false, 'Invalid username');
             } else if (!user.validPassword(password)) {
-                return done(null, false, 'Oops! Wrong password.');
+                return done(null, false, 'Wrong password');
             }
             return done(null, user);
         });

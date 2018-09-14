@@ -7,7 +7,7 @@ h1 {
 
 .bg {
   /* The image used */
-  background-image: url("../../images/home-page.jpg");
+  background-image: url("../../../images/home-page.jpg");
 
   /* Full height */
   height: 100%;
@@ -18,6 +18,22 @@ h1 {
   background-size: cover;
 }
 
-.btn {
+.form-group {
   margin: 0;
+}
+
+input {
+  border-bottom: none;
+}
+
+input:focus {
+  box-shadow: none;
+  border-color: lightgray;
+}
+
+#route {
+  float: right;
+  margin-top: 30px;
+  width: 10%;
+  padding: 5px 20px;
 }
